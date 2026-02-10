@@ -2,8 +2,6 @@
 
 A modern, interactive web application for visualizing Data Structures and Algorithms. This project helps users understand how sorting algorithms work through real-time animated visualizations.
 
-![DSA Visualizer](website/images/dsaLogo.png)
-
 ## 🚀 Features
 
 - **Bubble Sort Visualization** - Watch how bubble sort compares and swaps adjacent elements
@@ -50,29 +48,6 @@ DSA Visualizer/
 └── README.md
 ```
 
-## 🎮 How to Use
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd "DSA Visualizer"
-   ```
-
-2. **Open the project**
-   - Simply open `website/index.html` in your web browser
-   - Or use a local development server:
-     ```bash
-     # Using Python
-     python -m http.server 8000
-     
-     # Using Node.js (http-server)
-     npx http-server
-     ```
-
-3. **Navigate the visualizations**
-   - Click on "Bubble", "Insertion", or "Quick" in the navigation menu
-   - Click **"New"** to generate a new random array
-   - Click **"Play"** to start the sorting animation
 
 ## 🎨 Features in Detail
 
