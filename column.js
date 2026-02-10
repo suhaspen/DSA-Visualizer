@@ -4,35 +4,36 @@ class Column {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.queue = [];
+        this.queue=[]; 
     }
 
-    moveTo(dest, y_offset, frameCount = 20) {
-        for (let i = 1; i <= frameCount; i++) {
-            const t = i / frameCount; 
-            const u = Math.sin(t * Math.PI);
+    moveTo(dest, y_offset, frameCount = 20){ //move function 
+        for (let i = 1; i <= frameCount; i++){
+            const t = i/frameCount; 
+            const u = Math.sin(t*Math.PI);
             this.queue.push({
-                x: lerp(this.x, dest.x, t),
-                y: lerp(this.y, dest.y, t) + u * this.width / 2
+                x:lerp(this.x, dest.x, t),
+                y:lerp(this.y, dest.y, t) + 
+                    u*this.width/2
             });
         }
     }
 
-    jump(frameCount = 20) {
-        for (let i = 1; i <= frameCount; i++) {
-            const t = i / frameCount; 
-            const u = Math.sin(t * Math.PI);
+    jump(frameCount = 20){
+        for(let i = 1; i <= frameCount; i++){
+            const t = i/frameCount; 
+            const u=Math.sin(t*Math.PI);
             this.queue.push({
-                x: this.x, 
-                y: this.y - u * this.width,
+                x:this.x, 
+                y:this.y-u*this.width,
             });
         }
     }
 
     draw(ctx) {
         let changed = false; 
-        if (this.queue.length > 0) {
-            const {x, y} = this.queue.shift();
+        if (this.queue.length > 0){
+            const {x,y} = this.queue.shift();
             this.x = x; 
             this.y = y;
             changed = true; 
@@ -42,7 +43,7 @@ class Column {
         const top = this.y - this.height;
 
         ctx.beginPath();
-        ctx.fillStyle = "rgb(150, 150, 150)";
+        ctx.fillStyle = "rgb(150, 150, 150)"; // Darker shade for 3D effect
         ctx.strokeStyle = "black"; 
         ctx.lineWidth = 2;
 
@@ -51,7 +52,7 @@ class Column {
         ctx.fill();
         ctx.stroke();
 
-        // Side rectangle
+        // Side lines
         ctx.beginPath();
         ctx.moveTo(left, this.y);
         ctx.lineTo(left, top);
@@ -65,12 +66,12 @@ class Column {
         ctx.ellipse(this.x, top, this.width / 2, this.width / 4, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke();
-
         return changed; 
     }
 }
 
+// Set the background color of the canvas
 function setCanvasBackground(canvas, ctx) {
-    ctx.fillStyle = "rgb(170, 170, 170)";
+    ctx.fillStyle = "rgb(170, 170, 170)"; // Gray background
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
