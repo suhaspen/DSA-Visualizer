@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --light-color: white;
+    --dark-color: black;
+}
+
+*, 
+*::before, 
+*::after {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: var(--dark-color);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: var(--light-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul { 
+    list-style-type: none;
+}
+
+img{
+    display: block;
+    max-width: 100%;
+    height: auto; 
+}
+
+.showcase {
+    position: relative; 
+    height: 100vh; 
+    padding: 2rem; 
+    text-align: center; 
+}
+
+.showcase::before{
+    content: ''; 
+    position: fixed; 
+    top: 150%; 
+    left: 100%; 
+    z-index: -1; 
+    width: 350%; 
+    height: 350%; 
+    background-image: url("../website/images/grain.png"); 
+    opacity: .25; 
+}
+
+.logo-image{
+    width: 3.5rem; 
+    margin-inline: auto;
+}
+
+.navbar{
+    padding-block: 1.5rem;
+
+}
+
+.navbar ul{
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 1rem 2rem; 
+}
+
+.title {
+    font-size: 11vw;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    grid-area: subtitle;
+    font-size: 4vw;
+    font-weight: 700;
+    margin-top: 5rem;       /* pull it upward */
+    margin-left: auto;
+    justify-self: end;
+    text-align: right;
+}
+
+.description{
+    padding-block: 3rem;
+}
+
+.cta {
+    display: block; 
+    padding-bottom: 1rem; 
+}
+
+.shape {
+    position: absolute;
+    bottom: 10vh; 
+    left: 25vw; 
+    z-index: -1;  
+    width: 10vw; 
+    opacity: .25; 
+    user-select: none; 
+    filter: blur(1px);
+
+}
+
+.shape-md{
+    top: 2.5vh; 
+    left: 2.5vw; 
+    width: 15vw; 
+    filter: blur(1px);
+}
+
+.shape-lg{
+    top: 15vh;
+    right: -10vh; 
+    left: auto; 
+    width: 80vw; 
+    filter: blur(1px);
+}
+
+@media screen and (min-width: 64em){
+    .showcase,
+    .showcase > *:not(.link) {
+        padding: 0;
+    }
+
+    .showcase {
+        display: grid;
+        grid-template-columns: 10rem 1fr 1fr 1fr 1fr;
+        grid-template-rows: 8rem auto auto auto auto;
+        grid-template-areas:
+            "logo navbar navbar navbar dashboard"
+            ". title title title ."
+            ". . . .  subtitle"
+            "vertical-text description description description ."
+            ". . . . .";
+        align-items: center;
+        height: 100vh;
+        text-align: left;
+        padding: 4rem;
+    }
+
+    .logo {
+        grid-area: logo;
+    }
+
+    .navbar {
+        grid-area: navbar;
+    }
+
+    .link-dashboard {
+        grid-area: dashboard;
+        justify-self: end;
+    }
+
+    .title {
+        grid-area: title;
+        font-size: 6vw;
+        line-height: 1;
+        white-space: nowrap; 
+    }
+
+    .subtitle {
+        grid-area: subtitle;
+        font-size: 5vw;
+        justify-self: end;
+        margin-top: -20rem;
+        margin-right: 1rem; 
+    }
+
+    .description {
+        grid-area: description;
+        font-size: 1.6rem;
+        line-height: 1.6;
+        max-width: 60ch;
+        color: #ccc;
+        max-width: 70%;
+        margin-top: -25rem;
+    }
+
+    .vertical-text {
+        position: fixed;             /* stays in place while scrolling */
+        top: 50%;                    /* vertically centered */
+        left: 0;                     /* flush against the left edge */
+        transform-origin: left top;
+        font-size: 5rem;
+        font-weight: 400;
+        letter-spacing: 0.3rem;
+        text-transform: uppercase;
+        color: #ccc;
+        z-index: 10;
+        padding-left: 1rem;          /* slight spacing from edge */
+        white-space: nowrap;
+    }
+
+    .vertical-text-inner{
+        writing-mode: vertical-lr;
+        transform: rotate(180deg);
+        
+    }
+
+    .line-vertical::before{
+        left: 0; 
+        top: -250vh; 
+        width: 1px;
+        height: 500vh; 
+    }
+}
+
+@media (prefers-reduced-motion: no-preference){
+    .showcase::before{
+        animation: grain 5s steps(10) infinite; 
+    }
+
+    .has-in-common{
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+        animation-delay: var(--delay);
+    }
+
+    .to-right,
+    .to-bottom{
+        display:block;
+        opacity: 0; 
+    }
+
+    .to-right{
+        animation-name: toRight;
+    }
+
+    .to-bottom{
+        animation-name: toBottom; 
+    }
+
+    .shape{
+        scale: 0;
+        animation-name: scaleIn;
+    }
+
+
+
+    @keyframes grain{
+        0%, 100%{
+            transform: translate(0);
+        } 10% {
+            transform: translate(-5%, -10%);
+        } 20% {
+            transform: translate(15%, 5%);
+        } 30% {
+            transform: translate(-7%, -15%);
+        } 40% {
+            transform: translate(-5%, -10%);
+        } 50% {
+            transform: translate(-15%, -5%);
+        } 60% {
+            transform: translate(15%);
+        } 70% {
+            transform: translate(-5%, -10%);
+        } 80% {
+            transform: translate(3%, 35%);
+        } 90% {
+            transform: translate(-10%, 10%);
+        }
+    }
+
+    @keyframes toRight{
+        from{
+            opacity: 1;
+            transform: translateY(-100%); 
+        }
+        to{
+            opacity: 1;
+            tranform: none; 
+        }
+    }
+
+    @keyframes toBottom{
+        from{
+            opacity: 1;
+            transform: translateY(100%); 
+        }
+        to{
+            opacity: 1;
+            tranform: none; 
+        }
+    }
+
+    @keyframes scaleIn{
+        from{
+            scale: 0;
+        }
+        to{
+            scale: 1;
+        }
+    }
+}
+
+.tracker{
+    position: fixed; 
+    z-index: 9999; 
+    transform: translate(-50%, -50%);
+    width: 4rem; 
+    height: 4rem; 
+    border-radius: 50%;
+    border: 1px white; 
+    pointer-events: none;
+    mix-blend-mode: difference; 
+    opacity: 0; 
+    transition: top 0.075s, left 0.075s, opacity 0.5s; 
+}

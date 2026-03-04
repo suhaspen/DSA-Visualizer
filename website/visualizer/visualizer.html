@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DSA Visualizer</title>
+    <link rel="stylesheet" href="visualizer.css" />
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <nav class="navbar vertical-center">
+        <ul>
+            <li><a href="../index.html" class="link">Home</a></li>
+            <li><a href="visualizer.html" class="link active">Visualizer</a></li>
+        </ul>
+    </nav>
+
+    <main class="visualizer-main">
+        <h1>DSA Visualizer</h1>
+        <p class="tagline">Interactive sorting and searching algorithms with real-time animations</p>
+
+        <div class="controls-panel">
+            <div class="control-group">
+                <label for="algorithmSelect">Algorithm</label>
+                <select id="algorithmSelect"></select>
+            </div>
+            <div class="control-group">
+                <label for="arraySize">Array Size: <span id="arraySizeValue">50</span></label>
+                <input type="range" id="arraySize" min="10" max="5000" value="50" />
+            </div>
+            <div class="control-group">
+                <label for="speed">Speed</label>
+                <input type="range" id="speed" min="1" max="10" value="5" />
+            </div>
+            <div class="control-group buttons">
+                <button id="newBtn">New</button>
+                <button id="playBtn">Play</button>
+            </div>
+        </div>
+
+        <p id="searchNote" class="search-note" style="display:none;">
+            Search algorithms run on a sorted array. A random target is selected.
+        </p>
+
+        <div class="canvas-wrapper">
+            <canvas id="canvas"></canvas>
+        </div>
+    </main>
+
+    <script src="utils.js"></script>
+    <script src="algorithms/algorithmRegistry.js"></script>
+    <script src="algorithms/bubbleSort.js"></script>
+    <script src="algorithms/insertionSort.js"></script>
+    <script src="algorithms/quickSort.js"></script>
+    <script src="algorithms/linearSearch.js"></script>
+    <script src="algorithms/binarySearch.js"></script>
+    <script src="Column.js"></script>
+    <script src="BarRenderer.js"></script>
+    <script src="visualizer.js"></script>
+</body>
+</html>
